@@ -1,52 +1,58 @@
-fun main(args: Array<String>) {
+fun main() {
+
+    var opc: Int
+    var opcion = 0
+    var nota = 0
+    var i = 0
+    var suma = 0.0
+    var descuento = ""
 
 
 
 
 
 
-    //when -> Switch Case
-
-    var opc = 0
-    var nota =0
-    var i =0
-    var suma =0.0
-    var descuento =""
-
-    val cali= arrayListOf<Double>()
-    println("""Menu
-        |1.Trayectos 
-        |2.Lista de Notas
-      
-    """.trimMargin())
-    opc= readln().toInt()
 
 
 
-    when(opc){
-        in 1..1-> {
-            val tarifa = 8500;
 
 
-            println("Ingrese cantidad de Trayectos ")
-            var trayectos = readln().toInt()
-            var total = trayectos * tarifa
+    do {
+        println(
+            """
+            Menu de opciones
+            1. Ejercicio 1
+            2. Ejercicio 2
+            3.  Salir
+        """.trimIndent()
+        )
+        opc = readln().toInt()
+
+        when (opc) {
+            1 -> {
+
+                val tarifa = 8500;
+
+
+                println("Ingrese cantidad de Trayectos ")
+                var trayectos = readln().toInt()
+                var total = trayectos * tarifa
 
 
 
-            println("Ingrese su edad por favor  ")
-            var edad = readln().toInt()
+                println("Ingrese su edad por favor  ")
+                var edad = readln().toInt()
 
-            if (edad >= 60) {
+                if (edad >= 60) {
 
-                println("Desea descuento ?  si o no  ")
+                    println("Desea descuento ?  si o no  ")
 
-                 descuento = readln();
-            }
-            if (descuento == "si") {
-                var des = total * 0.45
-                println(
-                    """
+                    descuento = readln();
+                }
+                if (descuento == "si") {
+                    var des = total * 0.45
+                    println(
+                        """
         
         Cantidad de Trayectos : $trayectos
         
@@ -60,14 +66,12 @@ fun main(args: Array<String>) {
    
         
     """.trimIndent()
-                )
+                    )
 
 
-            }
-
-
-            else{
-                println("""
+                } else {
+                    println(
+                        """
         
         Cantidad de Trayectos : $trayectos
         
@@ -77,67 +81,72 @@ fun main(args: Array<String>) {
         
         Tenga Buen Viaje   Empresa Andrex
    
-    """.trimIndent())
+    """.trimIndent()
+                    )
+
+
+                }
+            }
+
+            2 -> {
+
+                val notas = arrayListOf<Double>()
+                println("Digite la cantidad de notas")
+                var cantnotas = 0
+                cantnotas = readln().toInt()
+                for (i in 1..cantnotas) {
+                    println("Escriba  la nota:")
+                    var calificacion = readln().toDouble()
+                    notas.add(calificacion)
+                }
+
+                var suma = 0.0
+                var sumag=0.0
+                var contador = 0
+                for (i in notas) {
+                    if (i <= 3.5) {
+                        suma = suma + i
+                        contador = contador + 1
+                    }
+                }
+                var promedio = suma / contador
+                println("El promedio de las notas menores a 3.5 es = $promedio")
+
+
+                for (i in notas) {
+
+                    sumag = sumag + i
+                }
+                var promediogeneral = sumag / notas.size
+                println("El promedio general de las notas es = $promediogeneral")
 
 
 
+                var numeroMayor = 0.0
+                for (calificacion in notas) {
+                    if (calificacion > numeroMayor) {
+                        numeroMayor = calificacion
+                    }
+                }
+
+                println("Numero mayor $numeroMayor")
+
+                var numeroMenor: Double = numeroMayor
+
+                for (calificacion in notas) {
+                    if (calificacion < numeroMenor) {
+                        numeroMenor = calificacion
+                    }
+                }
+
+
+                println("La nota menor es: $numeroMenor")
             }
 
 
         }
-        in 2..2 ->{
 
 
-            println("Digite notas a ingresar ")
-            val n =readln().toInt()
-            for(i in 0 .. n){
-                println(" ingrese nota:  ")
-                 nota =readln().toInt()
-            }
-            println(i)
-            println(nota)
-
-/*
-            val cali= arrayListOf<Double>(5.0,4.0,5.0,3.5)
-            for (i in 0 .. cali.size-1){
-
-                println(cali[i])
-                suma =(cali[0]+cali[1]+cali[2]+cali[3])
-            }
-            println("suma :  $suma")
-            var promedio = suma/4
-            println(""" 
-                Notas = $cali 
-                1.Promedio de calificaicones = $promedio  
-                2.Calificacion mas alta = en proceso
-                3.Calificacion mas bajan = en proceso 
-                4.Promedio calificaicones menor a 3.5 = en proceso 
-                "si tarda demasiado intene mas tarde "
-                
-                
-                
-                
-                
-            """.trimIndent())
-
-*/
-
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-        else -> println("error de eleccion ")
-    }
-
-
+    }        while (opc != 3)
 
 }
